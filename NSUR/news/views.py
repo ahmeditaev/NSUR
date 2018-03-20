@@ -6,8 +6,11 @@ from . import forms
 
 # Create your views here.
 def mainPage(request):
-    posts = models.News.objects.filter(published__lte=now()).order_by('-published')[:9]
-    return render(request, 'home.html', {'posts':posts})
+    firstNews = models.News.objects.filter(published__lte=now()).order_by('-published')[:1]
+    middleNews = models.News.objects.filter(published__lte=now()).order_by('-published')[1:4]
+    downNews = models.News.objects.filter(published__lte=now()).order_by('-published')[4:7]
+    lastNews = models.News.objects.filter(published__lte=now()).order_by('-published')[7:9]
+    return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews})
 
 class PostListView(generic.ListView):
     model = models.News

@@ -46,105 +46,103 @@
 {% block content %}
     <div id="news-block">
         <div class="main-news_card">
-            <div class="news_card_img--wrap">
-                <img class="img-rounded img-responsive" src="{% static 'uploads/main-news-video-preview.jpg' %}"
-                     width="984"
-                     height="503" alt="Preview image">
-                <a class="play-icon popup-with-zoom-anim" href="#small-dialog">
-                    <span></span>
-                </a>
-                <div id="small-dialog" class="mfp-hide">
-                    <iframe src="https://player.vimeo.com/video/145787219" width="500" height="281" frameborder="0"
-                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-            </div>
-            <a href="#">
-                <div class="main-news_card_caption card_caption">
-                    <h3 class="main-news_card_caption_title card_caption_title">Презентации с международной
-                        конференции 11 декабря</h3>
-                    <p class="main-news_card_caption_desc card_caption_desc">11 декабря в Бишкеке прошла
-                        Международная конференция в рамках программы цифровой трансформации «Таза Коом»:
-                        Перспективы цифрового правительства, цифрового образования и цифрового
-                        здравоохранения в
-                        Кыргызской Республике. В конференции приняли участие ведущие эксперты в области
-                        цифровой
-                        трансформации...</p>
-                </div>
-            </a>
-        </div>
-        <div class="news_card_list--horizontal">
-            <div class="news_card_list_item clearfix">
-                <div class="news_card_img--wrap pull-left">
-                    <img class="img-rounded img-responsive"
-                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"
-                         alt="news image">
-                    <a class="play-icon play-icon--small popup-with-zoom-anim" href="#small-dialog">
+        {% for post in first %}
+                {% if post.video %}
+                <div class="news_card_img--wrap">
+                    <img class="img-rounded img-responsive" src="{{ post.previewImage.url }}"
+                         width="984"
+                         height="503" alt="Preview image">
+                    <a class="play-icon popup-with-zoom-anim" href="#small-dialog">
                         <span></span>
                     </a>
                     <div id="small-dialog" class="mfp-hide">
-                        <iframe src="https://player.vimeo.com/video/145787350" width="500" height="281" frameborder="0"
-                                webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <iframe src="http://127.0.0.1:8008/media/{{ post.video }}" width="500" height="281" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     </div>
                 </div>
-                <a href="#">
-                    <div class="card_caption">
-                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась
-                            проектами программы «Таза коом»</h3>
-                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант
-                            Султанов и Азиз
-                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр
-                            цифровой
-                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к
-                            реализации цифровых проектов в...</p>
-                    </div>
-                </a>
-            </div>
-            <div class="news_card_list_item clearfix">
+                {% else %}
+                <div class="news_card_img--wrap">
+                    <img class="img-rounded img-responsive" src="{{ post.pic.url }}"
+                         width="984"
+                         height="503" alt="Preview image">
+                </div>
+            {% endif %}
+        {% endfor %}
+
+            {% for post in first %}
+
+            <a href="#">
+                <div class="main-news_card_caption card_caption">
+                    <h3 class="main-news_card_caption_title card_caption_title">{{ post.title }}</h3>
+                    <p class="main-news_card_caption_desc card_caption_desc">{{ post.text }}</p>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+
+        <div class="news_card_list--horizontal">
+            {% for post in middle  %}
+                <div class="news_card_list_item clearfix">
                 <div class="news_card_img--wrap pull-left">
                     <img class="img-rounded img-responsive"
-                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"
+                         src="{{ post.pic.url }}" width="312" height="197"
                          alt="news image">
                 </div>
                 <a href="#">
                     <div class="card_caption">
-                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась
-                            проектами программы «Таза коом»</h3>
-                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант
-                            Султанов и Азиз
-                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр
-                            цифровой
-                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к
-                            реализации цифровых проектов в...</p>
+                        <h3 class="card_caption_title">{{ post.title }}</h3>
+                        <p class="card_caption_desc">{{ post.text }}</p>
                     </div>
                 </a>
             </div>
-            <div class="news_card_list_item clearfix">
-                <div class="news_card_img--wrap pull-left">
-                    <img class="img-rounded img-responsive"
-                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"
-                         alt="news image">
-                </div>
-                <a href="#">
-                    <div class="card_caption">
-                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась
-                            проектами программы «Таза коом»</h3>
-                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант
-                            Султанов и Азиз
-                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр
-                            цифровой
-                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к
-                            реализации цифровых проектов в...</p>
-                    </div>
-                </a>
-            </div>
+            {% endfor %}
+{#            <div class="news_card_list_item clearfix">#}
+{#                <div class="news_card_img--wrap pull-left">#}
+{#                    <img class="img-rounded img-responsive"#}
+{#                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"#}
+{#                         alt="news image">#}
+{#                </div>#}
+{#                <a href="#">#}
+{#                    <div class="card_caption">#}
+{#                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась#}
+{#                            проектами программы «Таза коом»</h3>#}
+{#                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант#}
+{#                            Султанов и Азиз#}
+{#                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр#}
+{#                            цифровой#}
+{#                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к#}
+{#                            реализации цифровых проектов в...</p>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+{#            <div class="news_card_list_item clearfix">#}
+{#                <div class="news_card_img--wrap pull-left">#}
+{#                    <img class="img-rounded img-responsive"#}
+{#                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"#}
+{#                         alt="news image">#}
+{#                </div>#}
+{#                <a href="#">#}
+{#                    <div class="card_caption">#}
+{#                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась#}
+{#                            проектами программы «Таза коом»</h3>#}
+{#                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант#}
+{#                            Султанов и Азиз#}
+{#                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр#}
+{#                            цифровой#}
+{#                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к#}
+{#                            реализации цифровых проектов в...</p>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
         </div>
         <div class="news_card_list--vertical">
             <div class="row">
+                {% for post in last %}
                 <div class="col-md-4">
                     <div class="news_card_list_item">
                         <div class="news_card_img--wrap pull-left">
                             <img class="img-rounded img-responsive"
-                                 src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312"
+                                 src="{{ post.pic.url }}" width="312"
                                  height="197"
                                  alt="news image">
                             <a class="play-icon play-icon--small popup-with-zoom-anim" href="#small-dialog">
@@ -153,98 +151,37 @@
                         </div>
                         <a href="#">
                             <div class="card_caption">
-                                <h3 class="card_caption_title">Японская компания Nippon Signal</h3>
-                                <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант
-                                    Султанов и Азиз
-                                    Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили
-                                    центр цифровой
-                                    трансформации компании «Фуджицу Лимитед», проведя переговоры по их</p>
+                                <h3 class="card_caption_title">{{ post.title }}</h3>
+                                <p class="card_caption_desc">{{ post.text }}</p>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="news_card_list_item">
-                        <div class="news_card_img--wrap pull-left">
-                            <img class="img-rounded img-responsive"
-                                 src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312"
-                                 height="197"
-                                 alt="news image">
-                        </div>
-                        <a href="#">
-                            <div class="card_caption">
-                                <h3 class="card_caption_title">Японская компания Nippon Signal</h3>
-                                <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант
-                                    Султанов и Азиз
-                                    Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили
-                                    центр цифровой
-                                    трансформации компании «Фуджицу Лимитед», проведя переговоры по их</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="news_card_list_item">
-                        <div class="news_card_img--wrap pull-left">
-                            <img class="img-rounded img-responsive"
-                                 src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312"
-                                 height="197"
-                                 alt="news image">
-                        </div>
-                        <a href="#">
-                            <div class="card_caption">
-                                <h3 class="card_caption_title">Японская компания Nippon Signal</h3>
-                                <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант
-                                    Султанов и Азиз
-                                    Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили
-                                    центр цифровой
-                                    трансформации компании «Фуджицу Лимитед», проведя переговоры по их</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="news_card_list--big">
             <div class="row">
+
+                {% for post in down %}
                 <div class="col-md-6">
                     <div class="news_card_list_item">
                         <div class="news_card_img--wrap">
                             <img class="img-rounded img-responsive"
-                                 src="{% static 'uploads/news-card-big-preview-image-1.jpg' %}" width="480" height="360"
+                                 src="{{ post.pic.url }}" width="480" height="360"
                                  alt="news image">
                         </div>
                         <a href="#">
                             <div class="card_caption">
-                                <h3 class="card_caption_title">ГКИТС Кыргызстана и МВД Кореи договорились
-                                    совместно ...</h3>
-                                <p class="card_caption_desc">При содействии Посольства Кыргызской Республики
-                                    в Республике Корея состоялась двустороння встреча Заместителя
-                                    Председателя Госкомитета информационных технологий и связи КР (ГКИТС)
-                                    Мирлана</p>
+                                <h3 class="card_caption_title">{{ post.title }}</h3>
+                                <p class="card_caption_desc">{{ post.text }}</p>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="news_card_list_item">
-                        <div class="news_card_img--wrap">
-                            <img class="img-rounded img-responsive"
-                                 src="{% static 'uploads/news-card-big-preview-image-1.jpg' %}" width="480" height="360"
-                                 alt="news image">
-                        </div>
-                        <a href="#">
-                            <div class="card_caption">
-                                <h3 class="card_caption_title">ГКИТС Кыргызстана и МВД Кореи договорились
-                                    совместно ...</h3>
-                                <p class="card_caption_desc">При содействии Посольства Кыргызской Республики
-                                    в Республике Корея состоялась двустороння встреча Заместителя
-                                    Председателя Госкомитета информационных технологий и связи КР (ГКИТС)
-                                    Мирлана</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
+
+
             </div>
         </div>
         <div class="clearfix">
