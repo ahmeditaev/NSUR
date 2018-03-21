@@ -36,11 +36,9 @@
                             <h3 class="title-sidebar">Пресс-клипиинг</h3>
                             <div class="news-list">
                                 <ul>
-                                    <li class="news-list_item"><a href="#">Новость 1</a></li>
-                                    <li class="news-list_item"><a href="#">Новость 2</a></li>
-                                    <li class="news-list_item"><a href="#">Новость 3</a></li>
-                                    <li class="news-list_item"><a href="#">Новость 4</a></li>
-                                    <li class="news-list_item"><a href="#">Новость 5</a></li>
+                                    {% for post in post %}
+                                        <li class="news-list_item"><a href="{{ post.new.id }}">{{ post.new.title }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>

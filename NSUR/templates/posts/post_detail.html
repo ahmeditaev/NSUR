@@ -7,121 +7,19 @@
     <div class="detail-page">
         <div class="detail-page_header">
             <a class="detail-page_header_prev-btn" href="#">Предыдущая новость</a>
-            <h1 class="detail-page_header_title">Хорошие новости</h1>
+            <h1 class="detail-page_header_title">{{ details.title }}</h1>
             <a class="detail-page_header_next-btn" href="#">Следующая новость</a>
         </div>
         <div class="detail-page_body">
-            <img class="img-responsive img-rounded" src="{% static 'uploads/detail-page_img_1.jpg' %}" width="830"
-                 height="442" alt="Detail image">
-            <h2 class="detail-page_body_title">Хорошие новости</h2>
+            <h2 class="detail-page_body_title">{{ details.title }}</h2>
             <div class="detail-page_body_content">
                 <div class="detail-page_body_desc">
-                    <p>Повседневная практика показывает, что рамки и место
-                        обучения кадров представляет собой интересный эксперимент проверки модели
-                        развития.
-                        С другой стороны реализация намеченных плановых заданий обеспечивает широкому
-                        кругу
-                        (специалистов) участие в формировании модели развития. </p>
-                    <p>
-                        Разнообразный и богатый опыт дальнейшее развитие различных форм деятельности
-                        способствует подготовки и реализации модели развития. Задача организации, в
-                        особенности же реализация намеченных плановых заданий требуют определения и
-                        уточнения системы обучения кадров, соответствует насущным потребностям.
-                        Товарищи!
-                        постоянный количественный рост и сфера нашей активности позволяет оценить
-                        значение
-                        существенных финансовых и административных условий.
-                    </p>
-                </div>
-                <div class="detail-page_body_aside">
-                    <div class="detail-page_body_quote detail-page_body_quote--side">
-                        <span>Цитата</span>
-                        <p>С другой стороны реализация намеченных плановых заданий способствует
-                            подготовки и
-                            реализации системы обучения кадров, соответствует насущным потребностям</p>
-                    </div>
-                </div>
-            </div>
-            <img class="img-responsive img-rounded" src="uploads/{% static 'uploads/detail-page_img_1.jpg' %}" width="830"
-                 height="442" alt="Detail image">
-            <h2 class="detail-page_body_title">Хорошие новости</h2>
-            <div class="detail-page_body_content">
-                <div class="detail-page_body_desc">
-                    <p>Задача организации, в особенности же консультация с широким активом требуют
-                        определения и уточнения форм развития. Идейные соображения высшего порядка, а
-                        также реализация намеченных плановых заданий позволяет выполнять важные задания
-                        по разработке позиций, занимаемых участниками в отношении поставленных задач.
-                        Задача организации, в особенности же консультация с широким активом требуют от
-                        нас анализа существенных финансовых и административных условий.</p>
-                    <p>
-                        Товарищи! консультация с широким активом в значительной степени обуславливает
-                        создание систем массового участия. С другой стороны постоянный количественный
-                        рост и сфера нашей активности способствует подготовки и реализации модели
-                        развития.
-                    </p>
-                    <p>
-                        Разнообразный и богатый опыт сложившаяся структура организации позволяет
-                        выполнять важные задания по разработке систем массового участия. Значимость этих
-                        проблем настолько очевидна, что реализация намеченных плановых заданий влечет за
-                        собой процесс внедрения и модернизации новых предложений.
-                    </p>
-                </div>
-                <div class="detail-page_body_aside">
-                    <img class="img-rounded img-responsive--height_auto"
-                         src="{% static 'uploads/detail-page_aside_img_1.jpg' %}" width="300" height="200"
-                         alt="Detail aside image">
-                    <div class="image_by--wrap">
-                        <span class="image_by">© Unsplash.com</span>
-                    </div>
-                    <div class="detail-page_body_quote detail-page_body_quote--side">
-                        <span>Цитата</span>
-                        <p>С другой стороны реализация намеченных плановых заданий способствует
-                            подготовки и
-                            реализации системы обучения кадров, соответствует насущным потребностям</p>
-                    </div>
+                     {{ details.text|safe }}
                 </div>
             </div>
             <div class="detail-page_body_quote detail-page_body_quote--main">
-                <p>С другой стороны реализация намеченных плановых заданий способствует
-                    подготовки и
-                    реализации системы обучения кадров, соответствует насущным потребностям</p>
-                <span>Сапар Жумакадырович Исаков</span>
-            </div>
-            <h2 class="detail-page_body_title">Хорошие новости</h2>
-            <div class="detail-page_body_content">
-                <div class="detail-page_body_desc">
-                    <p>Задача организации, в особенности же консультация с широким активом позволяет
-                        выполнять важные задания по разработке соответствующий условий активизации. </p>
-                    <p>
-                        Товарищи! дальнейшее развитие различных форм деятельности позволяет оценить
-                        значение дальнейших направлений развития. Равным образом дальнейшее развитие
-                        различных форм деятельности способствует подготовки и реализации направлений
-                        прогрессивного развития.
-                    </p>
-                </div>
-            </div>
-            <div class="row detail-page_body_image_row">
-                <div class="col-md-4">
-                    <img class="img-responsive--height_auto img-responsive img-rounded"
-                         src="{% static 'uploads/detail-page_col-3_img_1.jpg' %}" width="323" height="407"
-                         alt="Detail image">
-                </div>
-                <div class="col-md-4">
-                    <img class="img-responsive--height_auto img-responsive img-rounded"
-                         src="{% static 'uploads/detail-page_col-3_img_1.jpg' %}" width="323" height="407"
-                         alt="Detail image">
-                </div>
-                <div class="col-md-4">
-                    <img class="img-responsive--height_auto img-responsive img-rounded"
-                         src="{% static 'uploads/detail-page_col-3_img_1.jpg' %}" width="323" height="407"
-                         alt="Detail image">
-                </div>
-            </div>
-            <div class="detail-page_body_content">
-                <div class="detail-page_body_desc">
-                    <p>Значимость этих проблем настолько очевидна, что реализация намеченных плановых
-                        заданий влечет за собой процесс внедрения и модернизации новых предложений.</p>
-                </div>
+                <p>{{ details.quote }}</p>
+                <span>{{ details.quoteAuthor }}</span>
             </div>
         </div>
     </div>

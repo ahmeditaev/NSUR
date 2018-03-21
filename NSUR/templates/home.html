@@ -71,10 +71,10 @@
 
             {% for post in first %}
 
-            <a href="#">
+            <a href="{{ post.id }}">
                 <div class="main-news_card_caption card_caption">
                     <h3 class="main-news_card_caption_title card_caption_title">{{ post.title }}</h3>
-                    <p class="main-news_card_caption_desc card_caption_desc">{{ post.text }}</p>
+                    <p class="main-news_card_caption_desc card_caption_desc">{{ post.text|safe }}</p>
                 </div>
             </a>
         {% endfor %}
@@ -88,7 +88,7 @@
                          src="{{ post.pic.url }}" width="312" height="197"
                          alt="news image">
                 </div>
-                <a href="#">
+                <a href="{{ post.id }}">
                     <div class="card_caption">
                         <h3 class="card_caption_title">{{ post.title }}</h3>
                         <p class="card_caption_desc">{{ post.text }}</p>
@@ -149,7 +149,7 @@
                                 <span></span>
                             </a>
                         </div>
-                        <a href="#">
+                        <a href="{{ post.id }}">
                             <div class="card_caption">
                                 <h3 class="card_caption_title">{{ post.title }}</h3>
                                 <p class="card_caption_desc">{{ post.text }}</p>
@@ -171,7 +171,7 @@
                                  src="{{ post.pic.url }}" width="480" height="360"
                                  alt="news image">
                         </div>
-                        <a href="#">
+                        <a href="{{ post.id }}">
                             <div class="card_caption">
                                 <h3 class="card_caption_title">{{ post.title }}</h3>
                                 <p class="card_caption_desc">{{ post.text }}</p>
@@ -186,7 +186,7 @@
         </div>
         <div class="clearfix">
             <div class="pull-right btn-more--wrap">
-                <a href="#">Больше новостей
+                <a href="/news">Больше новостей
                     <span class="btn-more--circle">
                         <span class="btn-more_arrow"></span>
                     </span>

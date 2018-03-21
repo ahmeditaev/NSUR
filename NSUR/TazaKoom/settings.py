@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news'
+    'news',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +105,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+CKEDITOR_CONFIGS = {
+    'default': {
+        'height': 300,
+        'width': '100%',
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Preview', 'Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'Blockquote'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['Paste', 'Copy'],
+            ['CreateDiv', 'Anchor', 'Image', 'Table', 'HorizontalRule'],
+            ['Smiley', 'SpecialChar', 'PageBreak', 'RemoveFormat', 'Source'],
+            ['Maximize', 'ShowBlocks'],
+        ],
+    },
+}
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -123,7 +143,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'news/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'news/media')
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
 ]

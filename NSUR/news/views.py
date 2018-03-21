@@ -21,6 +21,11 @@ class PostDetailView(generic.DetailView):
     template_name = 'posts/post_detail.html'
     context_object_name = 'details'
 
+class PressDetailView(generic.DetailView):
+    model = models.PressClipping
+    template_name = 'base.html'
+    context_object_name = 'post'
+
 
 class AboutUs(generic.ListView):
     template_name = 'tazakoom/aboutus.html'
