@@ -11,3 +11,5 @@ locale
 venv/*
 /dump.rdb
 .vscode
+*.pyc
+__pycache__/*
