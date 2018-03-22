@@ -29,51 +29,26 @@
             </ul>
             <div class="tab-content tab-news">
                 <div role="tabpanel" class="tab-pane active" id="photo">
-                    <div class="tab-news_item">
-                        <a class="tab-news_item_link clearfix" href="#">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">28 Декабря, 2017</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tab-news_item">
-                        <a class="tab-news_item_link clearfix" href="#">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">28 Декабря, 2017</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tab-news_item">
-                        <a class="tab-news_item_link clearfix" href="#">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">28 Декабря, 2017</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tab-news_item">
-                        <a class="tab-news_item_link clearfix" href="#">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">28 Декабря, 2017</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
+                    {% for photopost in photo %}
+                        <div class="tab-news_item">
+                            <a class="tab-news_item_link clearfix" href="#">
+                                <img src="{{ photopost.photo.pic.url }}" width="101" height="81"
+                                     alt="news image">
+                                <div class="tab-news_item_detail">
+                                    <span class="tab-news_item_detail_date">{{ photopost.photo.published }}</span>
+                                    <h4 class="tab-news_item_detail_title">{{ photopost.title }}</h4>
+                                </div>
+                            </a>
+                        </div>
+
+                    {% endfor %}
+
                 </div>
                 <div role="tabpanel" class="tab-pane" id="video">
-                    <div class="tab-news_item clearfix">
+                    {% for videopost in video %}
+                         <div class="tab-news_item clearfix">
                         <div class="news_card_img--wrap pull-left">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
+                            <img src="{{ videopost.video.pic.url }}" width="101" height="81"
                                  alt="news image">
                             <a class="play-icon play-icon--small popup-with-zoom-anim"
                                href="#small-dialog">
@@ -82,59 +57,13 @@
                         </div>
                         <a class="tab-news_item_link" href="#">
                             <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">20 Февраля, 2018</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
+                                <span class="tab-news_item_detail_date">{{ videopost.video.published }}</span>
+                                <h4 class="tab-news_item_detail_title">{{ videopost.title }}</h4>
                             </div>
                         </a>
                     </div>
-                    <div class="tab-news_item clearfix">
-                        <div class="news_card_img--wrap pull-left">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <a class="play-icon play-icon--small popup-with-zoom-anim"
-                               href="#small-dialog">
-                                <span></span>
-                            </a>
-                        </div>
-                        <a class="tab-news_item_link" href="#">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">20 Февраля, 2018</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tab-news_item clearfix">
-                        <div class="news_card_img--wrap pull-left">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <a class="play-icon play-icon--small popup-with-zoom-anim"
-                               href="#small-dialog">
-                                <span></span>
-                            </a>
-                        </div>
-                        <a class="tab-news_item_link" href="#">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">20 Февраля, 2018</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tab-news_item clearfix">
-                        <div class="news_card_img--wrap pull-left">
-                            <img src="{% static 'uploads/media-box-img-1.jpg' %}" width="101" height="81"
-                                 alt="news image">
-                            <a class="play-icon play-icon--small popup-with-zoom-anim"
-                               href="#small-dialog">
-                                <span></span>
-                            </a>
-                        </div>
-                        <a class="tab-news_item_link" href="#">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">20 Февраля, 2018</span>
-                                <h4 class="tab-news_item_detail_title">Новости НСУР 2018-2040</h4>
-                            </div>
-                        </a>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>

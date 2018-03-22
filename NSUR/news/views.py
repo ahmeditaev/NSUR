@@ -11,8 +11,10 @@ def mainPage(request):
     downNews = models.News.objects.filter(published__lte=now()).order_by('-published')[4:7]
     lastNews = models.News.objects.filter(published__lte=now()).order_by('-published')[7:9]
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-
-    return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews, 'press':press})
+    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by()[:4]
+    return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews, 'press':press,
+                                         'photo':photo,'video':video})
 
 class PostListView(generic.ListView):
     model = models.News

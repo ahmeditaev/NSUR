@@ -14,6 +14,7 @@ class News(models.Model):
     video = models.FileField(upload_to='post_vid',blank=True)
     previewImage = models.ImageField(upload_to='preview_pic',blank = True)
 
+
     def publish(self):
         self.published = now()
         self.save()
@@ -35,6 +36,7 @@ class PressClipping(models.Model):
     new = models.ForeignKey(News,on_delete=models.CASCADE)
     title = models.CharField(max_length=50,null=True)
     published = models.DateTimeField(null=True,blank=True,default=now())
+
     def publish(self):
         self.save()
 
@@ -44,3 +46,26 @@ class PressClipping(models.Model):
     def get_absolute_url(self):
         return reverse('news:details',kwargs={'pk':self.pk})
 
+
+
+class PhotoMediaBox(models.Model):
+    photo = models.ForeignKey(News,on_delete=models.CASCADE)
+    title = models.CharField(max_length=40,default='')
+    published = models.DateTimeField(default=now())
+    def __str__(self):
+        return self.title
+    def publish(self):
+        self.save()
+    def get_absolute_url(self):
+        return reverse('news:details', kwargs={'pk': self.pk})
+
+class VideoMediaBox(models.Model):
+    video = models.ForeignKey(News,on_delete=models.CASCADE)
+    title = models.CharField(max_length=40,default='')
+    published = models.DateTimeField(default=now())
+    def __str__(self):
+        return self.title
+    def publish(self):
+        self.save()
+    def get_absolute_url(self):
+        return reverse('news:details', kwargs={'pk': self.pk})
