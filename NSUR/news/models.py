@@ -32,9 +32,15 @@ class EmailUs(models.Model):
     def __str__(self):
         return self.name
 class PressClipping(models.Model):
-    new = models.OneToOneField(News,on_delete=models.CASCADE)
+    new = models.ForeignKey(News,on_delete=models.CASCADE)
+    title = models.CharField(max_length=50,null=True)
+    published = models.DateTimeField(null=True,blank=True,default=now())
+    def publish(self):
+        self.save()
 
     def __str__(self):
-        return self.new
+        return self.title
+
     def get_absolute_url(self):
         return reverse('news:details',kwargs={'pk':self.pk})
+

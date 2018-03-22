@@ -3,14 +3,18 @@
 {% block header %}
     {% include 'headers/main.html' %}
 {% endblock %}
+{% block sidebar %}
+    {% include 'sidebar/main.html' %}
+{% endblock %}
 {% block content %}
     <div class="detail-page">
         <div class="detail-page_header">
             <a class="detail-page_header_prev-btn" href="#">Предыдущая новость</a>
-            <h1 class="detail-page_header_title">{{ details.title }}</h1>
+            <h1 class="detail-page_header_title">{{ details.title}}</h1>
             <a class="detail-page_header_next-btn" href="#">Следующая новость</a>
         </div>
         <div class="detail-page_body">
+            <img class="img-responsive img-rounded" src="{{ details.pic.url }}" width="830" height="442" alt="Detail image">
             <h2 class="detail-page_body_title">{{ details.title }}</h2>
             <div class="detail-page_body_content">
                 <div class="detail-page_body_desc">
