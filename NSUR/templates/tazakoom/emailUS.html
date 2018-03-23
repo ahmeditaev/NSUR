@@ -15,42 +15,51 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
 <div class="wrapper">
     <div class="wrapper__inner">
         {% block header %}
             {% include 'headers/main.html' %}
         {% endblock %}
+{#<form enctype="multipart/form-data" method="POST">#}
+{#          {% csrf_token %}#}
+{#          {{ form.as_p }}#}
+{##}
+{#          <input type="submit" name="" value="Send">#}
+{#        </form>#}
+
         <div id="content">
             <div class="grid row container">
                 <div class="main-block col-md-offset-2 col-md-8 col-md-offset-2">
 					<div class="feedback-form">
 						<h2 class="feedback-form_title">Напишите нам</h2>
-						<form action="">
+						<form enctype="multipart/form-data" method="POST">
+                            {% csrf_token %}
 							<div class="feedback-form--wrap">
 								<div class="feedback-form_item">
-									<label for="fio">имя фамилия</label>
-									<input required type="text" id="fio" placeholder="Укажите свое имя и фамилию">
+									<label for="id_name">имя фамилия</label>
+									<input name="name" required type="text" id="id_name" placeholder="Укажите свое имя и фамилию">
 								</div>
 								<div class="feedback-form_item">
-									<label for="email">e-mail</label>
-									<input required type="email" id="email" placeholder="Укажите свой email">
+									<label for="id_email">e-mail</label>
+									<input name="email" required type="email" id="id_email" placeholder="Укажите свой email">
 								</div>
 								<div class="feedback-form_item">
-									<label for="phone-number">телефон</label>
-									<input required type="text" id="phone-number" placeholder="Укажите свой номер телефона">
+									<label for="id_tel">телефон</label>
+									<input name="tel" required type="text" id="id_tel" placeholder="Укажите свой номер телефона">
 								</div>
 								<div class="feedback-form_item">
-									<label for="text">сообщение</label>
-									<textarea required placeholder="Напишите сообщение" name="text" id="text" cols="30"
+									<label for="id_text">сообщение</label>
+									<textarea name="text" required placeholder="Напишите сообщение" name="text" id="id_text" cols="30"
 											  rows="10"></textarea>
 								</div>
 								<div class="feedback-form_item clearfix">
 									<div class="pull-left">
-										<input id="send_copy" type="checkbox">
-										<label for="send_copy">Отправить копию мне</label>
+										<input name="sendBack" id="id_sendBack" type="checkbox">
+										<label for="id_sendBack">Отправить копию мне</label>
 									</div>
 									<div class="pull-right">
-										<button class="feedback-form_btn">Отправить</button>
+										<button type="submit" class="feedback-form_btn">Отправить</button>
 									</div>
 								</div>
 							</div>
@@ -59,6 +68,7 @@
 				</div>
             </div>
         </div>
+
         {% block footer %}
             {% include 'footers/main.html' %}
         {% endblock %}

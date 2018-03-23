@@ -3,6 +3,10 @@ from django.views import generic
 from . import models
 from django.utils.timezone import now
 from . import forms
+from .forms import Email
+from django.core.mail import send_mail,EmailMessage,BadHeaderError
+from django.http import HttpResponse
+
 
 # Create your views here.
 def mainPage(request):
@@ -49,8 +53,30 @@ class Rukovodstvo(generic.ListView):
 
 def emailUs(request):
     form = forms.Email()
-    if request=='POST':
+    if request.method=='POST':
         form = forms.Email(request.POST)
-        if form.is_valid():
+        subject = request.POST.get('tel')
+        message = request.POST.get('text')
+        fromemail = request.POST.get('email')
+        if subject and message and fromemail:
+            print('hey')
+            send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
             print('someone mailed you')
     return render(request,'tazakoom/emailUS.html',{'form':form})
+
+
+def send_email(subject,message,fromemail,toemail):
+    email = EmailMessage(subject,message,fromemail,toemail)
+    email.send()
+
+
+
+
+
+
+
+
+
+
+
+

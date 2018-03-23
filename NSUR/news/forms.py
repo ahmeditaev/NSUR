@@ -6,7 +6,8 @@ class Email(forms.Form):
     tel = forms.CharField()
     email = forms.EmailField()
     text = forms.CharField(widget=forms.Textarea)
+    sendBack = forms.BooleanField()
 
     class Meta:
         model = models.EmailUs
-        fields = ['name','tel','email','text']
+        fields = ['name','tel','email','text','sendBack']

@@ -29,6 +29,7 @@ class EmailUs(models.Model):
     tel = models.CharField(max_length=240)
     email = models.EmailField(max_length=300)
     text = models.TextField()
+    sendBack = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

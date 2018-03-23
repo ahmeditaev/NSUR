@@ -716,9 +716,9 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	padding: 14px 0px 15px 21px;
 }
-.feedback-form_item input[id='fio'],
-.feedback-form_item input[id='email'],
-.feedback-form_item input[id='phone-number'] {
+.feedback-form_item input[id='id_name'],
+.feedback-form_item input[id='id_email'],
+.feedback-form_item input[id='id_tel'] {
 	min-width: 300px;
 	max-width: 370px;
 	width: 100%;
@@ -727,10 +727,10 @@ body {
 	width: 100%;
 	resize: none;
 }
-input#send_copy {
+input#id_sendBack {
 	display: none;
 }
-label[for="send_copy"] {
+label[for="id_sendBack"] {
 	display: inline-block;
 	vertical-align: middle;
 	font-size: 13px;
@@ -738,7 +738,7 @@ label[for="send_copy"] {
 	text-transform: none;
 	position: relative;
 }
-label[for="send_copy"]::before {
+label[for="id_sendBack"]::before {
 	content: '';
 	width: 20px;
 	height: 20px;
@@ -750,11 +750,11 @@ label[for="send_copy"]::before {
 	cursor: pointer;
 	margin-right: 12px;
 }
-input#send_copy:checked + label[for="send_copy"]::before {
+input#id_sendBack:checked + label[for="id_sendBack"]::before {
 	background: #00e2aa;
 	border: none;
 }
-input#send_copy:checked + label[for="send_copy"]::after {
+input#id_sendBack:checked + label[for="id_sendBack"]::after {
 	content: '';
 	width: 10px;
 	height: 10px;
