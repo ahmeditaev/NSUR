@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^rukovodstvo/$', views.Rukovodstvo.as_view(), name='rukovodstvo'),
     url(r'^news/$', views.PostListView.as_view(queryset=News.objects.all().order_by('-published')[:20]), name='news'),
     url(r'^(?P<pk>\d+)/$', views.postDetailsView, name='details'),
-    url(r'^emailus/$', views.emailUs, name='emailUs'),
+    url(r'^emailus/$', views.emailUs, name='emailUs')
 
 
 ]
