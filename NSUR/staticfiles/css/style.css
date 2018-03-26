@@ -819,7 +819,7 @@ input#id_sendBack:checked + label[for="id_sendBack"]::after {
 }
 /*************************END PAGE OF FEEDBACK FORM*************************/
 /*************************PAGE OF LIST NEWS*************************/
-#news-list .news_card_list {
+#news-list .news_card_list_item {
 	padding: 10px 20px;
 }
 /*************************END PAGE OF LIST NEWS*************************/
