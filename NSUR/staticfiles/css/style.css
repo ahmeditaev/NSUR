@@ -702,7 +702,6 @@ body {
 /*************************END DETAIL PAGE OF NEWS*************************/
 /*************************PAGE OF FEEDBACK FORM*************************/
 
-/*************************END PAGE OF FEEDBACK FORM*************************/
 .feedback-form {
 	background: #ffffff;
 	padding: 0 13% 70px 13%;
@@ -818,6 +817,12 @@ input#id_sendBack:checked + label[for="id_sendBack"]::after {
 	-o-transition: opacity 0.3s ease-in-out;
 	transition: opacity 0.3s ease-in-out;
 }
+/*************************END PAGE OF FEEDBACK FORM*************************/
+/*************************PAGE OF LIST NEWS*************************/
+#news-list .news_card_list {
+	padding: 10px 20px;
+}
+/*************************END PAGE OF LIST NEWS*************************/
 /*************************FOOTER*************************/
 footer#footer {
 	background: #212121;
