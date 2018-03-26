@@ -548,9 +548,11 @@ body {
 }
 .detail-page_header_prev-btn {
 	padding: 24px 9px 23px 31px;
+    text-align: right;
 }
 .detail-page_header_next-btn {
 	padding: 24px 31px 23px 9px;
+    text-align: left;
 }
 .detail-page_header_prev-btn,
 .detail-page_header_next-btn {
@@ -618,9 +620,6 @@ body {
 	justify-content: space-between;
 	margin-left: 30px;
 	margin-bottom: 30px;
-}
-.detail-page_body_desc {
-	width: 60%;
 }
 .detail-page_body_desc p {
 	font-size: 18px;
@@ -1025,6 +1024,9 @@ footer#footer {
 	.news_card_list--horizontal .card_caption {
 		padding: 2% 14px 11px 27px;
 	}
+    .detail-page_body {
+        padding: 50px 20px 150px 20px;
+    }
 
 }
 @media screen and (max-width: 768px){
@@ -1108,6 +1110,14 @@ footer#footer {
 	}
 }
 @media screen and (min-width: 320px) and (max-width: 480px){
+    .detail-page_header_prev-btn,
+    .detail-page_header_next-btn {
+        padding: 24px 9px 23px 9px;
+    }
+    .detail-page_header_prev-btn span,
+    .detail-page_header_next-btn span {
+        display: none;
+    }
 	.main-news_card_caption_title {
     	font-size: 16px;
     	border-bottom: 2px solid #ececec;
@@ -1149,6 +1159,9 @@ footer#footer {
 	.news_card_list--big .card_caption_desc {
     	font-size: 18px;
 	}
+    .detail-page_body {
+        padding: 50px 10px 150px 10px;
+    }
 }
 
 /*************************END MEDIA QUERIES**********************/
