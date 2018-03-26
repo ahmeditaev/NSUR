@@ -10,7 +10,7 @@
     <div class="detail-page">
         <div class="detail-page_header">
             <a class="detail-page_header_prev-btn" href="{% url 'news:details' pk=details.pk|add:'-1'  %}">Предыдущая новость</a>
-            <h1 class="detail-page_header_title">{{ details.title}}</h1>
+            <h1 class="detail-page_header_title">{{ details.title|truncatechars:50}}</h1>
             <a class="detail-page_header_next-btn" href="{% url 'news:details' pk=details.pk|add:'1' %}">Следующая новость</a>
         </div>
         <div class="detail-page_body">

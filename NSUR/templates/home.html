@@ -54,7 +54,7 @@
 {% block content %}
     <div id="news-block">
         <div class="main-news_card">
-        {% for post in first %}
+            {% for post in first %}
                 {% if post.video %}
                 <div class="news_card_img--wrap">
                     <img class="img-rounded img-responsive" src="{{ post.previewImage.url }}"
@@ -69,129 +69,96 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="news_card_img--wrap">
-                    <img class="img-rounded img-responsive" src="{{ post.pic.url }}"
-                         width="984"
-                         height="503" alt="Preview image">
-                </div>
-            {% endif %}
-        {% endfor %}
-
-            {% for post in first %}
-
-            <a href="{% url 'news:details' pk=post.pk  %}">
-
-                <div class="main-news_card_caption card_caption">
-                    <h3 class="main-news_card_caption_title card_caption_title">{{ post.title }}</h3>
-                    <p class="main-news_card_caption_desc card_caption_desc">{{ post.text|safe|truncatechars:500 }}</p>
-                </div>
-            </a>
-        {% endfor %}
-        </div>
-        <div class="news_card_list--horizontal">
-            {% for post in middle  %}
-                <div class="news_card_list_item clearfix">
-                <div class="news_card_img--wrap pull-left">
-                    <img class="img-rounded img-responsive"
-                         src="{{ post.pic.url }}" width="312" height="197"
-                         alt="news image">
-                </div>
-                <a href="{{ post.id }}">
-                    <div class="card_caption">
-                        <h3 class="card_caption_title">{{ post.title }}</h3>
-                        <p class="card_caption_desc">{{ post.text|safe|truncatechars:400 }}</p>
+                    <div class="news_card_img--wrap">
+                        <img class="img-rounded img-responsive" src="{{ post.pic.url }}"
+                             width="984"
+                             height="503" alt="Preview image">
+                    </div>
+                {% endif %}
+                <a href="{% url 'news:details' pk=post.pk  %}">
+                    <div class="main-news_card_caption card_caption">
+                        <h3 class="main-news_card_caption_title card_caption_title">
+                            {{ post.title|truncatechars:90 }}</h3>
+                        <div class="main-news_card_caption_desc card_caption_desc">
+                            {{ post.text|safe|truncatechars:306 }}
+                        </div>
                     </div>
                 </a>
-            </div>
             {% endfor %}
-{#            <div class="news_card_list_item clearfix">#}
-{#                <div class="news_card_img--wrap pull-left">#}
-{#                    <img class="img-rounded img-responsive"#}
-{#                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"#}
-{#                         alt="news image">#}
-{#                </div>#}
-{#                <a href="#">#}
-{#                    <div class="card_caption">#}
-{#                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась#}
-{#                            проектами программы «Таза коом»</h3>#}
-{#                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант#}
-{#                            Султанов и Азиз#}
-{#                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр#}
-{#                            цифровой#}
-{#                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к#}
-{#                            реализации цифровых проектов в...</p>#}
-{#                    </div>#}
-{#                </a>#}
-{#            </div>#}
-{#            <div class="news_card_list_item clearfix">#}
-{#                <div class="news_card_img--wrap pull-left">#}
-{#                    <img class="img-rounded img-responsive"#}
-{#                         src="{% static 'uploads/news-card-horizontal-preview-image-1.jpg' %}" width="312" height="197"#}
-{#                         alt="news image">#}
-{#                </div>#}
-{#                <a href="#">#}
-{#                    <div class="card_caption">#}
-{#                        <h3 class="card_caption_title">Японская компания Nippon Signal заинтересовалась#}
-{#                            проектами программы «Таза коом»</h3>#}
-{#                        <p class="card_caption_desc">Представители Рабочей группы «Таза Коом» Талант#}
-{#                            Султанов и Азиз#}
-{#                            Солтобаев встретились с компанией «Ниппон сигнал ко. ООО» и посетили центр#}
-{#                            цифровой#}
-{#                            трансформации компании «Фуджицу Лимитед», проведя переговоры по их привлечению к#}
-{#                            реализации цифровых проектов в...</p>#}
-{#                    </div>#}
-{#                </a>#}
-{#            </div>#}
         </div>
+
+        <div class="news_card_list--horizontal">
+            {% for post in middle %}
+                <div class="news_card_list_item clearfix">
+                    <div class="news_card_img--wrap pull-left">
+                        <img class="img-rounded img-responsive"
+                             src="{{ post.pic.url }}" width="312" height="197"
+                             alt="news image">
+                    </div>
+                    <a href="{% url 'news:details' pk=post.pk  %}">
+                        <div class="card_caption">
+                            <h3 class="card_caption_title">{{ post.title|truncatechars:90 }}</h3>
+                            <div class="card_caption_desc">
+                                {{ post.text|safe|truncatechars:280 }}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
         <div class="news_card_list--vertical">
             <div class="row">
                 {% for post in last %}
-                <div class="col-md-4">
-                    <div class="news_card_list_item">
-                        <div class="news_card_img--wrap pull-left">
-                            <img class="img-rounded img-responsive"
-                                 src="{{ post.pic.url }}" width="312"
-                                 height="197"
-                                 alt="news image">
-                            <a class="play-icon play-icon--small popup-with-zoom-anim" href="#small-dialog">
-                                <span></span>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="news_card_list_item">
+                            <div class="news_card_img--wrap">
+                                <img class="img-rounded img-responsive"
+                                     src="{{ post.pic.url }}" width="312"
+                                     height="197"
+                                     alt="news image">
+                                <a class="play-icon play-icon--small popup-with-zoom-anim" href="#small-dialog">
+                                    <span></span>
+                                </a>
+                            </div>
+                            <a href="{% url 'news:details' pk=post.pk  %}">
+                                <div class="card_caption">
+                                    <h3 class="card_caption_title">{{ post.title|truncatechars:40 }}</h3>
+                                    <div class="card_caption_desc">
+                                        {{ post.text|safe|truncatechars:220 }}
+                                    </div>
+                                </div>
                             </a>
                         </div>
-                        <a href="{% url 'news:details' pk=post.pk  %}">
-                            <div class="card_caption">
-                                <h3 class="card_caption_title">{{ post.title }}</h3>
-                                <p class="card_caption_desc">{{ post.text|safe }}</p>
-                            </div>
-                        </a>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
+
         <div class="news_card_list--big">
             <div class="row">
-
                 {% for post in down %}
-                <div class="col-md-6">
-                    <div class="news_card_list_item">
-                        <div class="news_card_img--wrap">
-                            <img class="img-rounded img-responsive"
-                                 src="{{ post.pic.url }}" width="480" height="360"
-                                 alt="news image">
-                        </div>
-                        <a href="{% url 'news:details' pk=post.pk  %}">
-                            <div class="card_caption">
-                                <h3 class="card_caption_title">{{ post.title }}</h3>
-                                <p class="card_caption_desc">{{ post.text|safe }}</p>
+                    <div class="col-md-6 col-xs-6">
+                        <div class="news_card_list_item">
+                            <div class="news_card_img--wrap">
+                                <img class="img-rounded img-responsive"
+                                     src="{{ post.pic.url }}" width="480" height="360"
+                                     alt="news image">
                             </div>
-                        </a>
+                            <a href="{% url 'news:details' pk=post.pk  %}">
+                                <div class="card_caption">
+                                    <h3 class="card_caption_title">{{ post.title|truncatechars:60 }}</h3>
+                                    <div class="card_caption_desc">
+                                        {{ post.text|safe|truncatechars:190 }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
-
-
             </div>
         </div>
+
         <div class="clearfix">
             <div class="pull-right btn-more--wrap">
                 <a href="/news">Больше новостей
