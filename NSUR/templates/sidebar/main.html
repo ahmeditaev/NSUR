@@ -12,7 +12,7 @@
 
             <ul>
                 {% for post in press %}
-                    <li class="news-list_item"><a href="{{ post.new.id }}">{{ post.title }}</a></li>
+                    <li class="news-list_item"><a href="{% url 'news:details' pk=post.pk %}">{{ post.title }}</a></li>
                 {% endfor %}
             </ul>
 
@@ -31,7 +31,7 @@
                 <div role="tabpanel" class="tab-pane active" id="photo">
                     {% for photopost in photo %}
                         <div class="tab-news_item">
-                            <a class="tab-news_item_link clearfix" href="#">
+                            <a class="tab-news_item_link clearfix" href="{% url 'news:details' pk=photopost.pk %}">
                                 <img src="{{ photopost.photo.pic.url }}" width="101" height="81"
                                      alt="news image">
                                 <div class="tab-news_item_detail">
@@ -51,11 +51,11 @@
                             <img src="{{ videopost.video.pic.url }}" width="101" height="81"
                                  alt="news image">
                             <a class="play-icon play-icon--small popup-with-zoom-anim"
-                               href="#small-dialog">
+                               href="{% url 'news:details' pk=videopost.pk %}">
                                 <span></span>
                             </a>
                         </div>
-                        <a class="tab-news_item_link" href="#">
+                        <a class="tab-news_item_link" href="{% url 'news:details' pk=videopost.pk %}">
                             <div class="tab-news_item_detail">
                                 <span class="tab-news_item_detail_date">{{ videopost.video.published }}</span>
                                 <h4 class="tab-news_item_detail_title">{{ videopost.title }}</h4>

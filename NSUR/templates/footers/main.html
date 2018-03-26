@@ -104,21 +104,29 @@
         <div class="col-md-3">
             <div class="feedback-form--footer">
                 <h3 class="footer_title">связаться с нами</h3>
-                <form action="">
+                <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
                     <div class="feedback-form_item--footer">
-                        <input required type="text" id="fio" placeholder="ФИО">
+
+                        <input name="nameFooter" required type="text" id="id_nameFooter" placeholder="ФИО">
+
                     </div>
                     <div class="feedback-form_item--footer">
-                        <input required type="email" id="email" placeholder="Email">
+
+                        <input name="emailFooter" required type="email" id="id_emailFooter" placeholder="Email">
+
                     </div>
                     <div class="feedback-form_item--footer">
-								<textarea required placeholder="Сообщение" name="text" id="text" cols="30"
+								<textarea name="textFooter" required placeholder="Сообщение" id="id_textFooter" cols="30"
                                           rows="4"></textarea>
                     </div>
                     <div class="feedback-form_item--footer">
-                        <button class="feedback-form_btn--footer">Отправить</button>
+
+                        <button type="submit" class="feedback-form_btn--footer">Отправить</button>
+
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

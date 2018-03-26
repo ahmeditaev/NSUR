@@ -1,11 +1,12 @@
-from django.shortcuts import render
 from django.views import generic
 from . import models
 from django.utils.timezone import now
 from . import forms
-from .forms import Email
-from django.core.mail import send_mail,EmailMessage,BadHeaderError
-from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.shortcuts import render,get_object_or_404
+
+
+
 
 
 # Create your views here.
@@ -17,6 +18,9 @@ def mainPage(request):
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
     photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
     video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by()[:4]
+
+    emailUsFooter(request)
+
     return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews, 'press':press,
                                          'photo':photo,'video':video})
 
@@ -24,22 +28,18 @@ class PostListView(generic.ListView):
     model = models.News
     template_name = 'posts/post_list.html'
 
-class PostDetailView(generic.DetailView):
-    model = models.News
-    template_name = 'posts/post_detail.html'
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(PostDetailView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['details'] = models.News.objects.get(pk=self.object.pk)
-        context['press'] = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-        return context
-
-def postDetailsView(request):
-    details = models.News
+def postDetailsView(request,pk):
+    try:
+        details = models.News.objects.get(pk=pk)
+    except models.News.DoesNotExist:
+        obj = models.News.objects.filter(published__lte=now()).order_by('-id')[0]
+        details = models.News.objects.get(pk=obj.pk)
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-    return render(request, 'posts/post_detail.html', {'details':details, 'press':press})
+    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by()[:4]
+    emailUsFooter(request)
+    return render(request, 'posts/post_detail.html', {'details':details, 'press':press, 'photo':photo,'video':video})
 
 
 
@@ -64,10 +64,21 @@ def emailUs(request):
             print('someone mailed you')
     return render(request,'tazakoom/emailUS.html',{'form':form})
 
+def emailUsFooter(request):
+    formFooter = forms.EmailFooter()
+    if request.method == 'POST':
+        formFooter = forms.EmailFooter(request.POST or None)
+        message = request.POST.get('textFooter')
+        subject = request.POST.get('textFooter')
+        fromemail = request.POST.get('emailFooter')
+        if subject and message and fromemail:
+            send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
+    return render(request, 'footers/main.html', {'formFooter': formFooter})
 
-def send_email(subject,message,fromemail,toemail):
-    email = EmailMessage(subject,message,fromemail,toemail)
-    email.send()
+
+
+
+
 
 
 

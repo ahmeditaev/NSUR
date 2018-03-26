@@ -15,6 +15,7 @@ class News(models.Model):
     previewImage = models.ImageField(upload_to='preview_pic',blank = True)
 
 
+
     def publish(self):
         self.published = now()
         self.save()

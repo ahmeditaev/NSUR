@@ -9,9 +9,9 @@
 {% block content %}
     <div class="detail-page">
         <div class="detail-page_header">
-            <a class="detail-page_header_prev-btn" href="#">Предыдущая новость</a>
+            <a class="detail-page_header_prev-btn" href="{% url 'news:details' pk=details.pk|add:'-1'  %}">Предыдущая новость</a>
             <h1 class="detail-page_header_title">{{ details.title}}</h1>
-            <a class="detail-page_header_next-btn" href="#">Следующая новость</a>
+            <a class="detail-page_header_next-btn" href="{% url 'news:details' pk=details.pk|add:'1' %}">Следующая новость</a>
         </div>
         <div class="detail-page_body">
             <img class="img-responsive img-rounded" src="{{ details.pic.url }}" width="830" height="442" alt="Detail image">
