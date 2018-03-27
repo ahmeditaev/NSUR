@@ -60,11 +60,11 @@
                     <img class="img-rounded img-responsive" src="{{ post.previewImage.url }}"
                          width="984"
                          height="503" alt="Preview image">
-                    <a class="play-icon popup-with-zoom-anim" href="#small-dialog">
+                    <a class="play-icon popup-with-zoom-anim" href="#small-dialog-{{ post.id }}">
                         <span></span>
                     </a>
-                    <div id="small-dialog" class="mfp-hide">
-                        <iframe src="http://127.0.0.1:8007/media/{{ post.video }}" width="500" height="281" frameborder="0"
+                    <div id="small-dialog-{{ post.id }}" class="mfp-hide">
+                        <iframe src="http://127.0.0.1:8008/media/{{ post.video }}" width="500" height="281" frameborder="0"
                             webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     </div>
                 </div>
@@ -90,11 +90,25 @@
         <div class="news_card_list--horizontal">
             {% for post in middle %}
                 <div class="news_card_list_item clearfix">
-                    <div class="news_card_img--wrap pull-left">
-                        <img class="img-rounded img-responsive"
-                             src="{{ post.pic.url }}" width="312" height="197"
-                             alt="news image">
-                    </div>
+                    {% if post.video %}
+                        <div class="news_card_img--wrap pull-left">
+                            <img class="img-rounded img-responsive"
+                                 src="{{ post.previewImage.url }}" width="312" height="197"
+                                 alt="news image">
+                            <a class="play-icon popup-with-zoom-anim" href="#small-dialog-{{ post.id }}">
+                                <span></span>
+                            </a>
+                            <div id="small-dialog-{{ post.id }}" class="mfp-hide">
+                                <iframe src="http://127.0.0.1:8008/media/{{ post.video }}" width="500" height="281"
+                                        frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="news_card_img--wrap pull-left">
+                            <img class="img-rounded img-responsive" src="{{ post.pic.url }}" width="312" height="197"
+                                 alt="news image">
+                        </div>
+                    {% endif %}
                     <a href="{% url 'news:details' pk=post.pk  %}">
                         <div class="card_caption">
                             <h3 class="card_caption_title">{{ post.title|truncatechars:90 }}</h3>
@@ -112,15 +126,25 @@
                 {% for post in last %}
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <div class="news_card_list_item">
-                            <div class="news_card_img--wrap">
-                                <img class="img-rounded img-responsive"
-                                     src="{{ post.pic.url }}" width="312"
-                                     height="197"
-                                     alt="news image">
-                                <a class="play-icon play-icon--small popup-with-zoom-anim" href="#small-dialog">
-                                    <span></span>
-                                </a>
-                            </div>
+                            {% if post.video %}
+                                <div class="news_card_img--wrap">
+                                    <img class="img-rounded img-responsive" src="{{ post.previewImage.url }}"
+                                         width="312" height="197" alt="news image">
+                                    <a class="play-icon popup-with-zoom-anim" href="#small-dialog-{{ post.id }}">
+                                        <span></span>
+                                    </a>
+                                    <div id="small-dialog-{{ post.id }}" class="mfp-hide">
+                                        <iframe src="http://127.0.0.1:8008/media/{{ post.video }}" width="500"
+                                                height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="news_card_img--wrap">
+                                    <img class="img-rounded img-responsive" src="{{ post.pic.url }}" width="312"
+                                         height="197" alt="news image">
+                                </div>
+                            {% endif %}
                             <a href="{% url 'news:details' pk=post.pk  %}">
                                 <div class="card_caption">
                                     <h3 class="card_caption_title">{{ post.title|truncatechars:40 }}</h3>
@@ -140,11 +164,25 @@
                 {% for post in down %}
                     <div class="col-md-6 col-xs-6">
                         <div class="news_card_list_item">
-                            <div class="news_card_img--wrap">
-                                <img class="img-rounded img-responsive"
-                                     src="{{ post.pic.url }}" width="480" height="360"
-                                     alt="news image">
-                            </div>
+                            {% if post.video %}
+                                <div class="news_card_img--wrap">
+                                    <img class="img-rounded img-responsive" src="{{ post.previewImage.url }}" width="480"
+                                         height="360" alt="news image">
+                                    <a class="play-icon popup-with-zoom-anim" href="#small-dialog-{{ post.id }}">
+                                        <span></span>
+                                    </a>
+                                    <div id="small-dialog-{{ post.id }}" class="small-dailog mfp-hide">
+                                        <iframe src="http://127.0.0.1:8008/media/{{ post.video }}" width="500"
+                                                height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="news_card_img--wrap">
+                                    <img class="img-rounded img-responsive" src="{{ post.pic.url }}" width="480"
+                                         height="360" alt="news image">
+                                </div>
+                            {% endif %}
                             <a href="{% url 'news:details' pk=post.pk  %}">
                                 <div class="card_caption">
                                     <h3 class="card_caption_title">{{ post.title|truncatechars:60 }}</h3>
@@ -189,7 +227,6 @@
                 removalDelay: 300,
                 mainClass: 'my-mfp-zoom-in'
             });
-
         });
     </script>
 {% endblock %}
