@@ -3,7 +3,11 @@ from . import models
 from django.utils.timezone import now
 from . import forms
 from django.core.mail import send_mail
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.db.models import Q
+
 
 
 
@@ -17,27 +21,32 @@ def mainPage(request):
     lastNews = models.News.objects.filter(published__lte=now()).order_by('-published')[7:9]
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
     photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
-    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by()[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
 
     emailUsFooter(request)
 
     return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews, 'press':press,
                                          'photo':photo,'video':video})
 
-class PostListView(generic.ListView):
-    model = models.News
-    template_name = 'posts/post_list.html'
+def postListView(request):
+    posts = models.News.objects.filter(published__lte=now()).order_by('-published')[:20]
+    press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
+    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    emailUsFooter(request)
+    return render(request, 'posts/post_list.html', {'posts':posts, 'press':press, 'photo':photo,'video':video})
+
 
 
 def postDetailsView(request,pk):
     try:
         details = models.News.objects.get(pk=pk)
     except models.News.DoesNotExist:
-        obj = models.News.objects.filter(published__lte=now()).order_by('-id')[0]
+        obj = models.News.objects.filter(published__lte=now()).latest('published')
         details = models.News.objects.get(pk=obj.pk)
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
-    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by()[:4]
+    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
     emailUsFooter(request)
     return render(request, 'posts/post_detail.html', {'details':details, 'press':press, 'photo':photo,'video':video})
 
@@ -78,7 +87,16 @@ def emailUsFooter(request):
 
 
 
-
+def search(request):
+    press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
+    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    query = request.GET.get("q")
+    posts = models.News.objects.filter(Q(title__icontains=query) |
+                                       Q(text__icontains=query) |
+                                       Q(quote__icontains=query) |
+                                       Q(quoteAuthor__icontains=query)).distinct()
+    return render(request, 'posts/post_list.html', {'posts': posts, 'press': press, 'photo': photo, 'video': video})
 
 
 

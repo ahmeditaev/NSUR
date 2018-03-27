@@ -3,18 +3,13 @@
 {% block header %}
     {% include 'headers/main.html' %}
 {% endblock %}
-
-<!--...-->
 {% block sidebar %}
     {% include 'sidebar/main.html' %}
 {% endblock %}
-
-
-
 {% block content %}
     <div id="news-list">
         <div class="news_card_list">
-            {% for post in middle %}
+            {% for post in posts %}
                 <div class="news_card_list_item clearfix">
                     <a href="{% url 'news:details' pk=post.pk  %}">
                         <div class="card_caption">

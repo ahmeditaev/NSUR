@@ -1,17 +1,19 @@
 {% load static %}
+<form method="GET" action="/search/">
 <div class="input-group search-group">
-    <input type="text" class="form-control btn-search" placeholder="Поиск">
+    <input type="text" name="q" class="form-control btn-search" placeholder="Поиск" value="{{ request.GET.get.q }}">
     <span class="input-group-btn">
-        <button class="btn btn-default btn-search-icon" type="button"></button>
+        <button class="btn btn-default btn-search-icon" type="submit"></button>
     </span>
 </div>
+</form>
 <div class="sidebar-left_menu">
     <div class="sidebar-left_menu_item">
         <h3 class="title-sidebar">Пресс-клипиинг</h3>
         <div class="news-list">
             <ul>
                 {% for post in press %}
-                    <li class="news-list_item"><a href="{% url 'news:details' pk=post.pk %}">{{ post.title|truncatechars:30 }}</a></li>
+                    <li class="news-list_item"><a href="{% url 'news:details' pk=post.new.pk %}">{{ post.title|truncatechars:30 }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -29,7 +31,7 @@
                 <div role="tabpanel" class="tab-pane active" id="photo">
                     {% for photopost in photo %}
                         <div class="tab-news_item">
-                            <a class="tab-news_item_link clearfix" href="{% url 'news:details' pk=photopost.pk %}">
+                            <a class="tab-news_item_link clearfix" href="{% url 'news:details' pk=photopost.photo.pk %}">
                                 <img src="{{ photopost.photo.pic.url }}" width="101" height="81"
                                      alt="news image">
                                 <div class="tab-news_item_detail">
@@ -49,11 +51,11 @@
                             <img src="{{ videopost.video.pic.url }}" width="101" height="81"
                                  alt="news image">
                             <a class="play-icon play-icon--small popup-with-zoom-anim"
-                               href="{% url 'news:details' pk=videopost.pk %}">
+                               href="{% url 'news:details' pk=videopost.video.pk %}">
                                 <span></span>
                             </a>
                         </div>
-                        <a class="tab-news_item_link" href="{% url 'news:details' pk=videopost.pk %}">
+                        <a class="tab-news_item_link" href="{% url 'news:details' pk=videopost.video.pk %}">
                             <div class="tab-news_item_detail">
                                 <span class="tab-news_item_detail_date">{{ videopost.video.published }}</span>
                                 <h4 class="tab-news_item_detail_title">{{ videopost.title }}</h4>

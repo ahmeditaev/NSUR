@@ -8,6 +8,11 @@ body {
 	width: 100%;
 	margin: 0 auto;
 }
+pre {
+	white-space:pre-wrap;
+	font-family: inherit;
+	font-size: inherit;
+}
 /************header**************/
 .arrow-down {
 	display: inline-block;
