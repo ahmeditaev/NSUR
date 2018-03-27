@@ -11,7 +11,7 @@
         <div class="news_card_list">
             {% for post in posts %}
                 <div class="news_card_list_item clearfix">
-                    <a href="{% url 'news:details' pk=post.pk  %}">
+                    <a href="{% url 'news:details' pk=post.pk %}">
                         <div class="card_caption">
                             <h3 class="card_caption_title">{{ post.title|truncatechars:90 }}</h3>
                             <div class="card_caption_desc">
@@ -21,6 +21,16 @@
                     </a>
                 </div>
             {% endfor %}
+        </div>
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a class="active" href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
         </div>
     </div>
 {% endblock %}
