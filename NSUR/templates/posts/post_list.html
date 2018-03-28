@@ -42,18 +42,15 @@
     <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
     <script>
         $(document).ready(function () {
-            $('.popup-with-zoom-anim').magnificPopup({
-                type: 'inline',
-                fixedContentPos: false,
-                fixedBgPos: true,
-                overflowY: 'auto',
-                closeBtnInside: true,
-                preloader: false,
-                midClick: true,
-                removalDelay: 300,
-                mainClass: 'my-mfp-zoom-in'
-            });
+            var captionDesk = $(".card_caption_desc p");
+            for (var i = 0; i < captionDesk.length; i++) {
+                captionDesk[i].innerHTML = captionDesk[i].innerHTML.replace(/&nbsp;/g,' ');
+            }
 
+            var captionTitle = $(".card_caption_title");
+            for (var i = 0; i < captionTitle.length; i++) {
+                captionTitle[i].innerHTML = captionTitle[i].innerHTML.replace(/&nbsp;/g,' ');
+            }
         });
     </script>
 {% endblock %}

@@ -31,3 +31,18 @@
 {% block footer %}
     {% include 'footers/main.html' %}
 {% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function () {
+
+            var captionDesk = $(".detail-page_body_desc p");
+            for (var i = 0; i < captionDesk.length; i++) {
+                captionDesk[i].innerHTML = captionDesk[i].innerHTML.replace(/&nbsp;/g,' ');
+            }
+            var captionTitle = $(".detail-page_body_title");
+            for (var i = 0; i < captionTitle.length; i++) {
+                captionTitle[i].innerHTML = captionTitle[i].innerHTML.replace(/&nbsp;/g,' ');
+            }
+        });
+    </script>
+{% endblock %}

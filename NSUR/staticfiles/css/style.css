@@ -1124,7 +1124,9 @@ footer#footer {
 		float: none !important;
 		margin-right: 0;
 	}
-
+	.news_card_list--big .news_card_img--wrap {
+		height: auto;
+	}
 	.news_card_list--vertical .news_card_img--wrap {
 		height: auto;
 	}

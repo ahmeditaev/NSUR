@@ -230,6 +230,18 @@
                 removalDelay: 300,
                 mainClass: 'my-mfp-zoom-in'
             });
+            {#var el = document.querySelector('.card_caption_desc p');#}
+            {#el.innerHTML = el.innerHTML.replace(/&nbsp;/g,' ');#}
+            
+            var captionDesk = $(".card_caption_desc p");
+            for (var i = 0; i < captionDesk.length; i++) {
+                captionDesk[i].innerHTML = captionDesk[i].innerHTML.replace(/&nbsp;/g,' ');
+            }
+
+            var captionTitle = $(".card_caption_title");
+            for (var i = 0; i < captionTitle.length; i++) {
+                captionTitle[i].innerHTML = captionTitle[i].innerHTML.replace(/&nbsp;/g,' ');
+            }
         });
     </script>
 {% endblock %}
