@@ -25,19 +25,19 @@
         </div>
         <div class="pagination">
             {% if object_list.has_previous%}
-                <a href="?page={{ object_list.previous_page_number }}&q={{ request.GET.q }}">&laquo;</a>
+                <a href="?page={{ object_list.previous_page_number }}&q={{ request.GET.q }}">❮</a>
             {% else %}
-                <a class="disabled">&laquo;</a>
+                <a class="disabled">❮</a>
             {% endif %}
 
-            <h3>Page {{ object_list.number }} of {{ object_list.paginator.num_pages  }}</h3>
+            <span>Страница {{ object_list.number }} из {{ object_list.paginator.num_pages  }}</span>
 
 
 
             {% if object_list.has_next %}
-                <a href="?page={{ object_list.next_page_number }}&q={{ request.GET.q }}">&raquo;</a>
+                <a href="?page={{ object_list.next_page_number }}&q={{ request.GET.q }}">❯</a>
             {% else %}
-                <a class="disabled">&raquo;</a>
+                <a class="disabled">❯</a>
             {% endif %}
 
         </div>

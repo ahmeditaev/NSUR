@@ -103,12 +103,12 @@ def search(request):
                                                Q(quote__icontains=query) |
                                                Q(quoteAuthor__icontains=query)).distinct().order_by('-published')
 
-    queryset_list,numpages = paginate(request,queryset_list)
+    queryset_list = paginate(request,queryset_list)
     context = { 'object_list': queryset_list,
                    'posts': queryset_list,
                    'press': press, 'photo': photo,
                    'video': video,
-                'numpages':numpages}
+                }
 
     return render(request, 'posts/post_list.html', context)
 
@@ -132,7 +132,7 @@ def paginate(request,queryset_list):
         print('hey2')
         queryset = paginator.page(paginator.num_pages)
 
-    return queryset,paginator.num_pages
+    return queryset
 
 
 
