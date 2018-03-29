@@ -71,3 +71,4 @@ class VideoMediaBox(models.Model):
         self.save()
     def get_absolute_url(self):
         return reverse('news:details', kwargs={'pk': self.pk})
+

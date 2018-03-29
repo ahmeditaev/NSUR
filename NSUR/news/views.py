@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 from django.contrib.postgres.search import SearchVector
-
+from Links.models import Facebook,VK,Tumblr,Twitter,Dribble,Pinterest
 
 
 
@@ -21,23 +21,27 @@ def mainPage(request):
     middleNews = models.News.objects.filter(published__lte=now()).order_by('-published')[1:4]
     downNews = models.News.objects.filter(published__lte=now()).order_by('-published')[4:7]
     lastNews = models.News.objects.filter(published__lte=now()).order_by('-published')[7:9]
-    press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
-    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+
+
+    facebook,dribble,pinterest,tumblr,twitter,vk,press,photo,video = context()
 
     emailUsFooter(request)
 
-    return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews, 'press':press,
-                                         'photo':photo,'video':video})
+    return render(request, 'home.html', {'middle':middleNews,'first':firstNews,'last':downNews,'down':lastNews,
+                                         'press':press,
+                                         'photo':photo,'video':video,'facebook':facebook,
+                                        'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
+                                         'twitter':twitter,'vk':vk})
 
 def postListView(request):
-    posts = models.News.objects.filter(published__lte=now()).order_by('-published')[:20]
-    press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
-    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    facebook,dribble,pinterest,tumblr,twitter,vk,press,photo,video = context()
+    posts = models.News.objects.all()
     pagin = paginate(request,posts)
     emailUsFooter(request)
-    return render(request, 'posts/post_list.html', {'object_list':pagin, 'press':press, 'photo':photo,'video':video})
+    return render(request, 'posts/post_list.html', {'object_list':pagin, 'press':press,
+                                         'photo':photo,'video':video,'facebook':facebook,
+                                        'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
+                                         'twitter':twitter,'vk':vk})
 
 
 
@@ -47,11 +51,12 @@ def postDetailsView(request,pk):
     except models.News.DoesNotExist:
         obj = models.News.objects.filter(published__lte=now()).latest('published')
         details = models.News.objects.get(pk=obj.pk)
-    press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
-    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
-    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    facebook,dribble,pinterest,tumblr,twitter,vk,press,photo,video = context()
     emailUsFooter(request)
-    return render(request, 'posts/post_detail.html', {'details':details, 'press':press, 'photo':photo,'video':video})
+    return render(request, 'posts/post_detail.html', {'details':details, 'press':press,
+                                         'photo':photo,'video':video,'facebook':facebook,
+                                        'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
+                                         'twitter':twitter,'vk':vk})
 
 
 
@@ -65,6 +70,8 @@ class Rukovodstvo(generic.ListView):
 
 def emailUs(request):
     form = forms.Email()
+    facebook,dribble,pinterest,tumblr,twitter,vk,press,photo,video = context()
+
     if request.method=='POST':
         form = forms.Email(request.POST)
         subject = request.POST.get('tel')
@@ -74,10 +81,15 @@ def emailUs(request):
             print('hey')
             send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
             print('someone mailed you')
-    return render(request,'tazakoom/emailUS.html',{'form':form})
+    return render(request,'tazakoom/emailUS.html',{'form':form,'facebook':facebook,
+                                        'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
+                                         'twitter':twitter,'vk':vk})
 
 def emailUsFooter(request):
     formFooter = forms.EmailFooter()
+    facebook,dribble,pinterest,tumblr,twitter,vk,press,photo,video = context()
+
+
     if request.method == 'POST':
         formFooter = forms.EmailFooter(request.POST or None)
         message = request.POST.get('textFooter')
@@ -85,7 +97,10 @@ def emailUsFooter(request):
         fromemail = request.POST.get('emailFooter')
         if subject and message and fromemail:
             send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
-    return render(request, 'footers/main.html', {'formFooter': formFooter})
+
+    return render(request, 'footers/main.html', {'formFooter': formFooter,'facebook':facebook,
+                                        'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
+                                         'twitter':twitter,'vk':vk})
 
 
 
@@ -94,6 +109,13 @@ def search(request):
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
     photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
     video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    facebook = Facebook.objects.filter(published__lte=now()).order_by('-published')[:1]
+    dribble = Dribble.objects.filter(published__lte=now()).order_by('-published')[:1]
+    pinterest = Pinterest.objects.filter(published__lte=now()).order_by('-published')[:1]
+    tumblr = Tumblr.objects.filter(published__lte=now()).order_by('-published')[:1]
+    twitter = Twitter.objects.filter(published__lte=now()).order_by('-published')[:1]
+    vk = VK.objects.filter(published__lte=now()).order_by('-published')[:1]
+
 
     print('search')
     query = request.GET.get("q")
@@ -107,7 +129,10 @@ def search(request):
     context = { 'object_list': queryset_list,
                    'posts': queryset_list,
                    'press': press, 'photo': photo,
-                   'video': video,
+                   'video': video,'facebook':facebook,
+                                        'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
+                                         'twitter':twitter,'vk':vk
+
                 }
 
     return render(request, 'posts/post_list.html', context)
@@ -135,7 +160,19 @@ def paginate(request,queryset_list):
     return queryset
 
 
+def context():
+    facebook = Facebook.objects.filter(published__lte=now()).order_by('-published')[:1]
+    dribble = Dribble.objects.filter(published__lte=now()).order_by('-published')[:1]
+    pinterest = Pinterest.objects.filter(published__lte=now()).order_by('-published')[:1]
+    tumblr = Tumblr.objects.filter(published__lte=now()).order_by('-published')[:1]
+    twitter = Twitter.objects.filter(published__lte=now()).order_by('-published')[:1]
+    vk = VK.objects.filter(published__lte=now()).order_by('-published')[:1]
 
+    press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
+    photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+
+    return facebook,dribble,pinterest,tumblr,twitter,vk,press,photo,video
 
 
 

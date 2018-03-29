@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'news',
     'ckeditor',
     'ckeditor_uploader',
+    'Links'
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ CKEDITOR_CONFIGS = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Asia/Bishkek'
 

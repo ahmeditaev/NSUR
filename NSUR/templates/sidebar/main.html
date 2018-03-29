@@ -35,7 +35,7 @@
                                 <img src="{{ photopost.photo.pic.url }}" width="101" height="81"
                                      alt="news image">
                                 <div class="tab-news_item_detail">
-                                    <span class="tab-news_item_detail_date">{{ photopost.photo.published }}</span>
+                                    <span class="tab-news_item_detail_date">{{ photopost.photo.published|date }}</span>
                                     <h4 class="tab-news_item_detail_title">{{ photopost.title }}</h4>
                                 </div>
                             </a>
@@ -55,7 +55,7 @@
                             </div>
                             <a class="tab-news_item_link" href="{% url 'news:details' pk=videopost.video.pk %}">
                                 <div class="tab-news_item_detail">
-                                    <span class="tab-news_item_detail_date">{{ videopost.video.published }}</span>
+                                    <span class="tab-news_item_detail_date">{{ videopost.video.published|date }}</span>
                                     <h4 class="tab-news_item_detail_title">{{ videopost.title }}</h4>
                                 </div>
                             </a>
