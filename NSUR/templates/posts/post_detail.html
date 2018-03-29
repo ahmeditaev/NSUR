@@ -14,7 +14,14 @@
             <a class="detail-page_header_next-btn" href="{% url 'news:details' pk=details.pk|add:'1' %}"><span>Следующая новость</span></a>
         </div>
         <div class="detail-page_body">
-            <img class="img-responsive img-rounded" src="{{ details.pic.url }}" width="830" height="442" alt="Detail image">
+            {% if details.video %}
+                <video width="780" height="415" poster="{{ details.pic.url }}" controls>
+                   <source src="{{ details.video.url }}" type="video/mp4">
+                   Your browser does not support the video tag.
+                </video>
+            {% else %}
+                <img class="img-responsive img-rounded" src="{{ details.pic.url }}" width="830" height="442" alt="Detail image">
+            {% endif %}
             <h2 class="detail-page_body_title">{{ details.title }}</h2>
             <div class="detail-page_body_content">
                 <div class="detail-page_body_desc">

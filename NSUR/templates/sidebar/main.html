@@ -40,28 +40,26 @@
                                 </div>
                             </a>
                         </div>
-
                     {% endfor %}
 
                 </div>
                 <div role="tabpanel" class="tab-pane" id="video">
                     {% for videopost in video %}
-                         <div class="tab-news_item clearfix">
-                        <div class="news_card_img--wrap pull-left">
-                            <img src="{{ videopost.video.pic.url }}" width="101" height="81"
-                                 alt="news image">
-                            <a class="play-icon play-icon--small popup-with-zoom-anim"
-                               href="{% url 'news:details' pk=videopost.video.pk %}">
-                                <span></span>
+                        <div class="tab-news_item clearfix">
+                            <div class="news_card_img--wrap pull-left">
+                                <img src="{{ videopost.video.pic.url }}" width="101" height="81"
+                                     alt="news image">
+                                <span class="play-icon play-icon--small">
+                                    <span></span>
+                                </span>
+                            </div>
+                            <a class="tab-news_item_link" href="{% url 'news:details' pk=videopost.video.pk %}">
+                                <div class="tab-news_item_detail">
+                                    <span class="tab-news_item_detail_date">{{ videopost.video.published }}</span>
+                                    <h4 class="tab-news_item_detail_title">{{ videopost.title }}</h4>
+                                </div>
                             </a>
                         </div>
-                        <a class="tab-news_item_link" href="{% url 'news:details' pk=videopost.video.pk %}">
-                            <div class="tab-news_item_detail">
-                                <span class="tab-news_item_detail_date">{{ videopost.video.published }}</span>
-                                <h4 class="tab-news_item_detail_title">{{ videopost.title }}</h4>
-                            </div>
-                        </a>
-                    </div>
                     {% endfor %}
 
                 </div>
