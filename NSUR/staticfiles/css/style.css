@@ -19,9 +19,15 @@ pre {
 }
 /*pagination*/
 .pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	margin-top: 50px;
 }
 
@@ -29,6 +35,8 @@ pre {
     color: black;
     padding: 8px 16px;
     text-decoration: none;
+    -webkit-transition: background-color .3s;
+    -o-transition: background-color .3s;
     transition: background-color .3s;
     border: 1px solid #ddd;
 }
@@ -123,6 +131,7 @@ pre {
 	background: url(../img/header_search-icon.png) 4px center no-repeat;
     padding: 2px 0 2px 25px;
 	-webkit-transition: width 0.4s ease-in-out;
+    -o-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 	color: #ffffff;
 	width: 20px;
@@ -130,8 +139,6 @@ pre {
     font-size: 17px;
 	font-weight: bold;
 	border: 2px solid transparent;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
 	border-radius: 4px;
 	cursor: pointer;
 }
@@ -1015,8 +1022,12 @@ footer#footer {
 }
 @media screen and (max-width: 1027px){
 	.navbar-header {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-    	justify-content: center;
+    	-webkit-box-pack: center;
+    	    -ms-flex-pack: center;
+    	        justify-content: center;
     	width: 100%;
     	margin-top: 10px;
 		margin-left: 0 !important;
@@ -1056,8 +1067,13 @@ footer#footer {
 }
 @media screen and (max-width: 991px) {
 	.grid {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-    	flex-direction: column-reverse;
+    	-webkit-box-orient: vertical;
+    	-webkit-box-direction: reverse;
+    	    -ms-flex-direction: column-reverse;
+    	        flex-direction: column-reverse;
 	}
 	.sidebar-left, .main-block {
 		width: 100%;
@@ -1137,8 +1153,12 @@ footer#footer {
 	.news_card_list--vertical .news_card_img--wrap,
 	.news_card_list--big .news_card_img--wrap,
 	.news_card_list--horizontal .news_card_img--wrap.pull-left {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 	}
 	.news_card_list--horizontal .news_card_img--wrap.pull-left {
 		float: none !important;
