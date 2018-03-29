@@ -13,3 +13,5 @@ venv/*
 .vscode
 *.pyc
 __pycache__/*
+/NSUR/news/media/
+/NSUR/news/__pycache__/
