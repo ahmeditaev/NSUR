@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^news/', views.postListView, name='news'),
     url(r'^(?P<pk>\d+)/$', views.postDetailsView, name='details'),
     url(r'^emailus/$', views.emailUs, name='emailUs'),
-    url(r'^search/',views.search,name='search'),
+    url(r'^search/$',views.search,name='search'),
     url(r'^email/',views.emailUsFooter,name='email')
 
 

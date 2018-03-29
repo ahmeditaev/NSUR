@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import Q
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
+from django.contrib.postgres.search import SearchVector
 
 
 
@@ -33,8 +35,9 @@ def postListView(request):
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
     photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
     video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+    pagin = paginate(request,posts)
     emailUsFooter(request)
-    return render(request, 'posts/post_list.html', {'posts':posts, 'press':press, 'photo':photo,'video':video})
+    return render(request, 'posts/post_list.html', {'object_list':pagin, 'press':press, 'photo':photo,'video':video})
 
 
 
@@ -91,18 +94,45 @@ def search(request):
     press = models.PressClipping.objects.filter(published__lte=now()).order_by('-published')[:6]
     photo = models.PhotoMediaBox.objects.filter(published__lte=now()).order_by('published')[:4]
     video = models.VideoMediaBox.objects.filter(published__lte=now()).order_by('-published')[:4]
+
+    print('search')
     query = request.GET.get("q")
-    posts = models.News.objects.filter(Q(title__icontains=query) |
-                                       Q(text__icontains=query) |
-                                       Q(quote__icontains=query) |
-                                       Q(quoteAuthor__icontains=query)).distinct()
-    return render(request, 'posts/post_list.html', {'posts': posts, 'press': press, 'photo': photo, 'video': video})
+
+    queryset_list = models.News.objects.filter(Q(title__icontains=query) |
+                                               Q(text__icontains=query) |
+                                               Q(quote__icontains=query) |
+                                               Q(quoteAuthor__icontains=query)).distinct().order_by('-published')
+
+    queryset_list,numpages = paginate(request,queryset_list)
+    context = { 'object_list': queryset_list,
+                   'posts': queryset_list,
+                   'press': press, 'photo': photo,
+                   'video': video,
+                'numpages':numpages}
+
+    return render(request, 'posts/post_list.html', context)
 
 
 
 
 
 
+def paginate(request,queryset_list):
+    page = request.GET.get('page')
+    paginator = Paginator(queryset_list, 8)
+    print('search3')
+
+    try:
+        queryset = paginator.page(page)
+
+    except PageNotAnInteger:
+        print('hey1')
+        queryset = paginator.page(1)
+    except EmptyPage:
+        print('hey2')
+        queryset = paginator.page(paginator.num_pages)
+
+    return queryset,paginator.num_pages
 
 
 

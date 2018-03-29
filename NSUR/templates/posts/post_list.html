@@ -9,7 +9,7 @@
 {% block content %}
     <div id="news-list">
         <div class="news_card_list">
-            {% for post in posts %}
+            {% for post in object_list %}
                 <div class="news_card_list_item clearfix">
                     <a href="{% url 'news:details' pk=post.pk %}">
                         <div class="card_caption">
@@ -20,17 +20,26 @@
                         </div>
                     </a>
                 </div>
+
             {% endfor %}
         </div>
         <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a class="active" href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+            {% if object_list.has_previous%}
+                <a href="?page={{ object_list.previous_page_number }}&q={{ request.GET.q }}">&laquo;</a>
+            {% else %}
+                <a class="disabled">&laquo;</a>
+            {% endif %}
+
+            <h3>Page {{ object_list.number }} of {{ object_list.paginator.num_pages  }}</h3>
+
+
+
+            {% if object_list.has_next %}
+                <a href="?page={{ object_list.next_page_number }}&q={{ request.GET.q }}">&raquo;</a>
+            {% else %}
+                <a class="disabled">&raquo;</a>
+            {% endif %}
+
         </div>
     </div>
 {% endblock %}
