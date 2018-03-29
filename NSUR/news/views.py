@@ -77,9 +77,13 @@ def emailUs(request):
         subject = request.POST.get('tel')
         message = request.POST.get('text')
         fromemail = request.POST.get('email')
+        copy = request.POST.get('sendBack')
         if subject and message and fromemail:
             print('hey')
-            send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
+            if copy:
+                send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com',fromemail])
+            else:
+                send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
             print('someone mailed you')
     return render(request,'tazakoom/emailUS.html',{'form':form,'facebook':facebook,
                                         'dribble':dribble,'pinterest':pinterest,'tumblr':tumblr,
@@ -95,6 +99,7 @@ def emailUsFooter(request):
         message = request.POST.get('textFooter')
         subject = request.POST.get('textFooter')
         fromemail = request.POST.get('emailFooter')
+
         if subject and message and fromemail:
             send_mail(subject, message, fromemail, ['batyrbeknazik123@gmail.com'])
 
